@@ -3,14 +3,14 @@ package ch.keepcalm.kotlinevents.order.core.command
 import ch.keepcalm.kotlinevents.order.core.event.OrderPlacedEvent
 import ch.keepcalm.kotlinevents.order.core.event.OrderConfirmedEvent
 import ch.keepcalm.kotlinevents.order.core.event.OrderShippedEvent
-
 import org.axonframework.eventsourcing.EventSourcingHandler
 import org.axonframework.modelling.command.AggregateLifecycle
 import org.axonframework.commandhandling.CommandHandler
 import org.axonframework.modelling.command.AggregateIdentifier
 import org.axonframework.spring.stereotype.Aggregate
-import org.axonframework.modelling.command.AggregateLifecycle.apply  // TODO axon apply
 import org.springframework.util.Assert
+// TODO axon apply
+import org.axonframework.modelling.command.AggregateLifecycle.apply
 
 // https://www.baeldung.com/axon-cqrs-event-sourcing
 @Aggregate
