@@ -1,5 +1,8 @@
-package ch.keepcalm.kotlinevents.order.core.command
+package ch.keepcalm.kotlinevents.order.commandmodel
 
+import ch.keepcalm.kotlinevents.order.core.command.ConfirmOrderCommand
+import ch.keepcalm.kotlinevents.order.core.command.PlaceOrderCommand
+import ch.keepcalm.kotlinevents.order.core.command.ShipOrderCommand
 import ch.keepcalm.kotlinevents.order.core.event.OrderPlacedEvent
 import ch.keepcalm.kotlinevents.order.core.event.OrderConfirmedEvent
 import ch.keepcalm.kotlinevents.order.core.event.OrderShippedEvent
@@ -20,6 +23,8 @@ class OrderAggregate {
     private var orderId: String? = null
     private var orderConfirmed: Boolean = false
 
+    constructor()
+
     @CommandHandler
     constructor(command: PlaceOrderCommand) {
         AggregateLifecycle.apply(OrderPlacedEvent(command.orderId, command.product))
@@ -30,7 +35,6 @@ class OrderAggregate {
         this.orderId = event.orderId
         orderConfirmed = false
     }
-    protected constructor() {}
 
 
 

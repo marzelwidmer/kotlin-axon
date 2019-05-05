@@ -1,4 +1,4 @@
-package ch.keepcalm.kotlinevents.order.core.querymodel
+package ch.keepcalm.kotlinevents.order.querymodel
 
 import ch.keepcalm.kotlinevents.order.core.event.OrderPlacedEvent
 import ch.keepcalm.kotlinevents.order.core.query.FindAllOrderedProductsQuery

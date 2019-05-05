@@ -1,4 +1,4 @@
-package ch.keepcalm.kotlinevents.order.core.api
+package ch.keepcalm.kotlinevents.order.api
 
 import ch.keepcalm.kotlinevents.order.core.command.ConfirmOrderCommand
 import ch.keepcalm.kotlinevents.order.core.command.PlaceOrderCommand
@@ -6,19 +6,25 @@ import ch.keepcalm.kotlinevents.order.core.command.ShipOrderCommand
 import ch.keepcalm.kotlinevents.order.core.query.FindAllOrderedProductsQuery
 import ch.keepcalm.kotlinevents.order.core.query.OrderedProduct
 import org.axonframework.commandhandling.gateway.CommandGateway
+import org.axonframework.eventsourcing.eventstore.EventStore
 import org.axonframework.messaging.responsetypes.ResponseTypes
 import org.axonframework.queryhandling.QueryGateway
-import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.PostMapping
-import org.springframework.web.bind.annotation.RequestBody
-import org.springframework.web.bind.annotation.RestController
+import org.springframework.web.bind.annotation.*
 import java.util.*
+import kotlin.streams.toList
 
 
 @RestController
-class OrderRestEndpoint(private val commandGateway: CommandGateway, private val queryGateway: QueryGateway) {
+class OrderRestEndpoint(private val commandGateway: CommandGateway, private val queryGateway: QueryGateway,
+                        private val eventStore: EventStore) {
 
 
+    @GetMapping("/order/{id}")
+    fun getEvents(@PathVariable id: String): List<Any> {
+        return eventStore.readEvents(id).asStream().map<Any> {
+            s -> s.payload }.toList()
+        //.collect<List<Any>, Any>(Collectors.toList())
+    }
     @PostMapping(value = ["/ship-order"])
     fun shipOrder(@RequestBody product: String) {
         val orderId = UUID.randomUUID().toString()

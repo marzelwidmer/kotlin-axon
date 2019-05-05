@@ -1,7 +1,7 @@
 package ch.keepcalm.kotlinevents
 
+import ch.keepcalm.kotlinevents.order.commandmodel.OrderAggregate
 import ch.keepcalm.kotlinevents.order.core.command.ConfirmOrderCommand
-import ch.keepcalm.kotlinevents.order.core.command.OrderAggregate
 import ch.keepcalm.kotlinevents.order.core.command.PlaceOrderCommand
 import ch.keepcalm.kotlinevents.order.core.command.ShipOrderCommand
 import ch.keepcalm.kotlinevents.order.core.event.OrderConfirmedEvent
