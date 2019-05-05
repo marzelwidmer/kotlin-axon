@@ -1,0 +1,4 @@
+*Copyright disclaimer and acknowledgements*
+This code is based heavily on the code for the
+https://www.baeldung.com/axon-cqrs-event-sourcing[baeldung axon event sourcing]
+
