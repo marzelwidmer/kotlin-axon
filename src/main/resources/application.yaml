@@ -5,9 +5,9 @@ spring:
     console:
       enabled: true
   datasource:
-    url: jdbc:h2:./target/testdb;DB_CLOSE_ON_EXIT=FALSE
+    url: jdbc:h2:file:./target/h2
+    username: sa
+    password:
     driver-class-name: org.h2.Driver
-    data-username: sa
-    data-password:
   jpa:
-    database-platform: org.hibernate.dialect.H2Dialect
+    generate-ddl: true
