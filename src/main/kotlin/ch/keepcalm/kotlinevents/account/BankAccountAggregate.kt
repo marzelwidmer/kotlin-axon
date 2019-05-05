@@ -26,7 +26,7 @@ import java.io.Serializable
 //
 
 @Aggregate
-class BankAccount : Serializable {
+class BankAccountAggregate : Serializable {
 
     @AggregateIdentifier
     private var id: String? = null

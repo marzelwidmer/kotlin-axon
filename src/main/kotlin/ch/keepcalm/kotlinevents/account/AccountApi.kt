@@ -59,9 +59,9 @@ class AccountApi(private val commandGateway: CommandGateway, private val eventSt
     fun notFound() {
     }
 
-    @ExceptionHandler(BankAccount.InsufficientBalanceException::class)
+    @ExceptionHandler(BankAccountAggregate.InsufficientBalanceException::class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    fun insufficientBalance(exception: BankAccount.InsufficientBalanceException): String? {
+    fun insufficientBalance(exception: BankAccountAggregate.InsufficientBalanceException): String? {
         return exception.message
     }
 }
