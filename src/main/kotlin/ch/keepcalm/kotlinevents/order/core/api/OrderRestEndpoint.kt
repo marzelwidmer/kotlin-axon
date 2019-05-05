@@ -10,6 +10,7 @@ import org.axonframework.messaging.responsetypes.ResponseTypes
 import org.axonframework.queryhandling.QueryGateway
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PostMapping
+import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RestController
 import java.util.*
 
@@ -19,19 +20,19 @@ class OrderRestEndpoint(private val commandGateway: CommandGateway, private val 
 
 
     @PostMapping(value = ["/ship-order"])
-    fun shipOrder() {
+    fun shipOrder(@RequestBody product: String) {
         val orderId = UUID.randomUUID().toString()
-        commandGateway.send<PlaceOrderCommand>(PlaceOrderCommand(orderId = orderId, product = "Deluxe Chair"))
+        commandGateway.send<PlaceOrderCommand>(PlaceOrderCommand(orderId = orderId, product = product))
         commandGateway.send<ConfirmOrderCommand>(ConfirmOrderCommand(orderId = orderId))
         commandGateway.send<ShipOrderCommand>(ShipOrderCommand(orderId = orderId))
     }
 
     @PostMapping(value = ["/ship-unconfirmed-order"])
-    fun shipUnconfirmedOrder() {
+    fun shipUnconfirmedOrder(@RequestBody product: String) {
         val orderId = UUID.randomUUID().toString()
-        commandGateway.send<Any>(PlaceOrderCommand(orderId, "Deluxe Chair"))
+        commandGateway.send<Any>(PlaceOrderCommand(orderId = orderId, product = product))
         // This throws an exception, as an Order cannot be shipped if it has not been confirmed yet.
-        commandGateway.send<Any>(ShipOrderCommand(orderId))
+        commandGateway.send<Any>(ShipOrderCommand(orderId = orderId))
     }
 
     @GetMapping(value = ["/all-orders"])
