@@ -21,7 +21,7 @@ import java.util.*
 @SpringBootTest
 class OrderAggregateUnitTest {
 
-    private var fixture: FixtureConfiguration<OrderAggregate>? = null
+    private lateinit var fixture: FixtureConfiguration<OrderAggregate>
 
     @Before
     fun setUp() {
@@ -33,12 +33,12 @@ class OrderAggregateUnitTest {
      * When the aggregate handles the PlaceOrderCommand, it should produce an OrderPlacedEvent:
      */
     @Test
-    fun `given NoPriorActivity when PlaceOrderCommand then should PublishOrderPlacedEvent`() {
+    fun `given NoPriorActivity when PlaceOrderCommand then should publish OrderPlacedEvent`() {
         val orderId = UUID.randomUUID().toString()
         val product = "Deluxe Chair"
-        fixture?.givenNoPriorActivity()
-                ?.`when`(PlaceOrderCommand(orderId, product))
-                ?.expectEvents(OrderPlacedEvent(orderId, product))
+        fixture.givenNoPriorActivity()
+                .`when`(PlaceOrderCommand(orderId, product))
+                .expectEvents(OrderPlacedEvent(orderId, product))
     }
 
     /**
@@ -46,30 +46,30 @@ class OrderAggregateUnitTest {
      * if it’s been confirmed.
      */
     @Test
-    fun `given OrderPlacedEvent when ConfirmOrderCommand then should PublishOrderConfirmedEvent`() {
+    fun `given OrderPlacedEvent when ConfirmOrderCommand then should publish OrderConfirmedEvent`() {
         val orderId = UUID.randomUUID().toString()
         val product = "Deluxe Chair"
-        fixture?.given(OrderPlacedEvent(orderId, product))
-                ?.`when`(ConfirmOrderCommand(orderId))
-                ?.expectEvents(OrderConfirmedEvent(orderId))
+        fixture.given(OrderPlacedEvent(orderId, product))
+                .`when`(ConfirmOrderCommand(orderId))
+                .expectEvents(OrderConfirmedEvent(orderId))
     }
 
     @Test
     fun `given OrderPlacedEvent when ShipOrderCommand then should ThrowIllegalStateException`() {
         val orderId = UUID.randomUUID().toString()
         val product = "Deluxe Chair"
-        fixture?.given(OrderPlacedEvent(orderId, product))
-                ?.`when`(ShipOrderCommand(orderId))
-                ?.expectException(IllegalStateException::class.java)
+        fixture.given(OrderPlacedEvent(orderId, product))
+                .`when`(ShipOrderCommand(orderId))
+                .expectException(IllegalStateException::class.java)
     }
 
     @Test
-    fun `given OrderPlacedEventAndOrderConfirmedEvent when ShipOrderCommand then should PublishOrderShippedEvent`() {
+    fun `given OrderPlacedEvent and OrderConfirmedEvent when ShipOrderCommand then should publish OrderShippedEvent`() {
         val orderId = UUID.randomUUID().toString()
         val product = "Deluxe Chair"
-        fixture?.given(OrderPlacedEvent(orderId, product), OrderConfirmedEvent(orderId))
-                ?.`when`(ShipOrderCommand(orderId))
-                ?.expectEvents(OrderShippedEvent(orderId))
+        fixture.given(OrderPlacedEvent(orderId, product), OrderConfirmedEvent(orderId))
+                .`when`(ShipOrderCommand(orderId))
+                .expectEvents(OrderShippedEvent(orderId))
     }
 
 }
