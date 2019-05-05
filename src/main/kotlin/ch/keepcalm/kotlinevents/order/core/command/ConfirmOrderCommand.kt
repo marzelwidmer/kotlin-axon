@@ -1,4 +1,4 @@
-package ch.keepcalm.kotlinevents.order.command
+package ch.keepcalm.kotlinevents.order.core.command
 
 import org.axonframework.modelling.command.TargetAggregateIdentifier
 import javax.validation.constraints.NotNull

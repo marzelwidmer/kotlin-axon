@@ -1,8 +1,8 @@
-package ch.keepcalm.kotlinevents.order.command
+package ch.keepcalm.kotlinevents.order.core.command
 
-import ch.keepcalm.kotlinevents.order.event.OrderPlacedEvent
-import ch.keepcalm.kotlinevents.order.event.OrderConfirmedEvent
-import ch.keepcalm.kotlinevents.order.event.OrderShippedEvent
+import ch.keepcalm.kotlinevents.order.core.event.OrderPlacedEvent
+import ch.keepcalm.kotlinevents.order.core.event.OrderConfirmedEvent
+import ch.keepcalm.kotlinevents.order.core.event.OrderShippedEvent
 
 import org.axonframework.eventsourcing.EventSourcingHandler
 import org.axonframework.modelling.command.AggregateLifecycle

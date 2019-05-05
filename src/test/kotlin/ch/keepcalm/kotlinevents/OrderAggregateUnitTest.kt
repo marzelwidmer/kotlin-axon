@@ -1,12 +1,12 @@
 package ch.keepcalm.kotlinevents
 
-import ch.keepcalm.kotlinevents.order.command.ConfirmOrderCommand
-import ch.keepcalm.kotlinevents.order.command.OrderAggregate
-import ch.keepcalm.kotlinevents.order.command.PlaceOrderCommand
-import ch.keepcalm.kotlinevents.order.command.ShipOrderCommand
-import ch.keepcalm.kotlinevents.order.event.OrderConfirmedEvent
-import ch.keepcalm.kotlinevents.order.event.OrderPlacedEvent
-import ch.keepcalm.kotlinevents.order.event.OrderShippedEvent
+import ch.keepcalm.kotlinevents.order.core.command.ConfirmOrderCommand
+import ch.keepcalm.kotlinevents.order.core.command.OrderAggregate
+import ch.keepcalm.kotlinevents.order.core.command.PlaceOrderCommand
+import ch.keepcalm.kotlinevents.order.core.command.ShipOrderCommand
+import ch.keepcalm.kotlinevents.order.core.event.OrderConfirmedEvent
+import ch.keepcalm.kotlinevents.order.core.event.OrderPlacedEvent
+import ch.keepcalm.kotlinevents.order.core.event.OrderShippedEvent
 import org.axonframework.test.aggregate.AggregateTestFixture
 import org.axonframework.test.aggregate.FixtureConfiguration
 import org.junit.Before
