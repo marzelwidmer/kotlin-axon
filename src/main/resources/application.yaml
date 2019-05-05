@@ -1,3 +1,13 @@
 spring:
   application:
     name: axon-kotlin
+  h2:
+    console:
+      enabled: true
+  datasource:
+    url: jdbc:h2:./target/testdb;DB_CLOSE_ON_EXIT=FALSE
+    driver-class-name: org.h2.Driver
+    data-username: sa
+    data-password:
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
