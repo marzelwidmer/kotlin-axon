@@ -42,7 +42,7 @@ class BankAccountAggregate : Serializable {
         val name = command.accountCreator
 
         Assert.hasLength(id, "Missing id")
-        Assert.hasLength(name, "Missig account creator")
+        Assert.hasLength(name, "Missing account creator")
 
         AggregateLifecycle.apply(AccountCreatedEvent(id, name, 0.0))
     }
